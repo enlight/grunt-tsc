@@ -1,0 +1,44 @@
+{
+  "name": "grunt-tsc",
+  "description": "Just executes the TypeScript compiler, optionally passing in a project path.",
+  "version": "0.1.0",
+  "homepage": "https://github.com/enlight/grunt-tsc",
+  "author": {
+    "name": "Vadim Macagon",
+    "email": "vadim.macagon@gmail.com",
+    "url": "vadim.macagon.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/enlight/grunt-tsc.git"
+  },
+  "bugs": {
+    "url": "https://github.com/enlight/grunt-tsc/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/enlight/grunt-tsc/blob/master/LICENSE"
+    }
+  ],
+  "engines": {
+    "node": ">= 0.12.0"
+  },
+  "scripts": {
+    "test": "grunt test"
+  },
+  "devDependencies": {
+    "grunt-contrib-jshint": "^0.9.2",
+    "grunt-contrib-clean": "^0.5.0",
+    "grunt-contrib-nodeunit": "^0.3.3",
+    "grunt": "~0.4.5"
+  },
+  "peerDependencies": {
+    "grunt": "~0.4.5",
+    "typescript": ">= 1.5.3"
+  },
+  "keywords": [
+    "gruntplugin",
+    "typescript"
+  ]
+}

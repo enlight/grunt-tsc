@@ -1,0 +1,19 @@
+{
+    "version": "1.5.3",
+    "compilerOptions": {
+        "target": "es5",
+        "module": "commonjs",
+        "declaration": false,
+        "noImplicitAny": true,
+        "removeComments": false,
+        "noLib": false,
+        "preserveConstEnums": true,
+        "suppressImplicitAnyIndexErrors": false
+    },
+    "files": [
+        "./typings/lib.es6.d.ts",
+        "./typings/node/node.d.ts",
+        "./typings/gruntjs/gruntjs.d.ts",
+        "./tasks/tsc.ts"
+    ]
+}
