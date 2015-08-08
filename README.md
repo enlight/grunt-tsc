@@ -5,13 +5,16 @@
 ## Getting Started
 This plugin requires Grunt `~0.4.5`
 
-If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out the [Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to create a [Gruntfile](http://gruntjs.com/sample-gruntfile) as well as install and use Grunt plugins. Once you're familiar with that process, you may install this plugin with this command:
+If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out the
+[Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to create a
+[Gruntfile](http://gruntjs.com/sample-gruntfile) as well as install and use Grunt plugins.
+Once you're familiar with that process, you may install this plugin with this command:
 
 ```shell
 npm install grunt-tsc --save-dev
 ```
 
-Once the plugin has been installed, it may be enabled inside your Gruntfile with this line of JavaScript:
+Once the plugin has been installed, it may be enabled inside your Gruntfile with this line:
 
 ```js
 grunt.loadNpmTasks('grunt-tsc');
@@ -38,11 +41,20 @@ grunt.initConfig({
 
 ### Options
 
+#### options.tscPath
+Type: `String`
+Default value: `undefined`
+
+Path to the TypeScript compiler `grunt-tsc` should use, when this is left undefined the
+globally installed TypeScript package will be used. If you'd like to use a nightly build of
+TypeScript install `typescript@next` as a dev dependency of your package and then set `tscPath`
+to `path.resolve('node_modules', 'typescript', 'bin', 'tsc')`.
+
 #### options.project
 Type: `String`
 Default value: `undefined`
 
-Path to a directory containing a tsconfig.json
+Path to a directory containing a `tsconfig.json`
 
 ### Usage Examples
 
@@ -63,29 +75,33 @@ grunt.initConfig({
 ```js
 grunt.initConfig({
   tsc: {
+    options: {
+      path.resolve('node_modules', 'typescript', 'bin', 'tsc')
+    },
     production: {
-	  options: {
-	    project: './tsconfig/production'
-	  }
-	},
-	testing: {
-	  options: {
-	    project: './tsconfig/testing'
-	  }
-	},
+	    options: {
+	      project: './tsconfig/production'
+	    }
+	  },
+	  testing: {
+	    options: {
+	      project: './tsconfig/testing'
+	    }
+	  },
     subproject1: {
       options: {
         project: './path-to-subproject1'
       }
-	},
-	subproject2: {
-	  options: {
-	    project: './path-to-subproject2'
+	  },
+	  subproject2: {
+	    options: {
+	      project: './path-to-subproject2'
+	    }
 	  }
-	}
   }
 });
 ```
 
 ## Contributing
-In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
+In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for
+any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
