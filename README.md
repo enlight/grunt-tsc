@@ -2,6 +2,17 @@
 
 > Just executes the TypeScript compiler, optionally passing in a project path.
 
+Gah, another TypeScript plugin for Grunt? But, WHY?! Because I wanted to set up `tsconfig.json`
+based builds using the nightly TypeScript builds. None of the existing TypeScript plugins fit
+the job:
+- [grunt-typescript](https://github.com/k-maru/grunt-typescript) doesn't let you specify the
+  compiler path.
+- [grunt-ts](https://github.com/TypeStrong/grunt-ts) ignores `tsconfig.json`.
+  (this will be fixed in the [near future](https://github.com/TypeStrong/grunt-ts/issues/202)).
+- [grunt-typescript-using-tsconfig](https://github.com/gilamran/grunt-typescript-using-tsconfig)
+  works with nightly builds, but doesn't let you specify the compiler path directly (which can be
+  a problem when using `npm link`). 
+
 ## Getting Started
 This plugin requires Grunt `~0.4.5`
 
