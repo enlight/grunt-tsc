@@ -34,8 +34,7 @@
     "grunt": "~0.4.5"
   },
   "peerDependencies": {
-    "grunt": "~0.4.5",
-    "typescript": ">= 1.5.3"
+    "grunt": "~0.4.5"
   },
   "keywords": [
     "gruntplugin",
