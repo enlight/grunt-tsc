@@ -3,15 +3,9 @@
 > Just executes the TypeScript compiler, optionally passing in a project path.
 
 Gah, another TypeScript plugin for Grunt? But, WHY?! Because I wanted to set up `tsconfig.json`
-based builds using the nightly TypeScript builds. None of the existing TypeScript plugins fit
-the job:
-- [grunt-typescript](https://github.com/k-maru/grunt-typescript) doesn't let you specify the
-  compiler path.
-- [grunt-ts](https://github.com/TypeStrong/grunt-ts) ignores `tsconfig.json`.
-  (this will be fixed in the [near future](https://github.com/TypeStrong/grunt-ts/issues/202)).
-- [grunt-typescript-using-tsconfig](https://github.com/gilamran/grunt-typescript-using-tsconfig)
-  works with nightly builds, but doesn't let you specify the compiler path directly (which can be
-  a problem when using `npm link`). 
+based builds using the nightly TypeScript builds, and none of the existing TypeScript plugins fit
+the job at the time. However, these days I'd recommend using
+[grunt-ts](https://github.com/TypeStrong/grunt-ts) if you need something more fully featured.
 
 ## Getting Started
 This plugin requires Grunt `~0.4.5`
@@ -41,12 +35,19 @@ In your project's `Gruntfile.js`, add a section named `tsc` to the data object p
 grunt.initConfig({
   tsc: {
     options: {
-      // Task-specific options go here.
+      // Default options for all targets.
     },
     your_target: {
-      // Target-specific file lists and/or options go here.
+      options: {
+        // Target-specific options that override default options.
+      }
     },
-  },
+    your_other_target: {
+      options: {
+        // Target-specific options that override default options.
+      }
+    }
+  }
 });
 ```
 
@@ -87,7 +88,7 @@ grunt.initConfig({
 grunt.initConfig({
   tsc: {
     options: {
-      path.resolve('node_modules', 'typescript', 'bin', 'tsc')
+      tscPath: path.resolve('node_modules', 'typescript', 'bin', 'tsc')
     },
     production: {
 	    options: {
@@ -112,7 +113,3 @@ grunt.initConfig({
   }
 });
 ```
-
-## Contributing
-In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for
-any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
