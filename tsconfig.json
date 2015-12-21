@@ -11,9 +11,10 @@
         "suppressImplicitAnyIndexErrors": false
     },
     "files": [
-        "./typings/lib.es6.d.ts",
-        "./typings/node/node.d.ts",
-        "./typings/gruntjs/gruntjs.d.ts",
-        "./tasks/tsc.ts"
+        "typings/lib.es6.d.ts",
+        "typings/node/node.d.ts",
+        "typings/gruntjs/gruntjs.d.ts",
+        "typings/which/which.d.ts",
+        "tasks/tsc.ts"
     ]
 }

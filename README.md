@@ -54,7 +54,7 @@ grunt.initConfig({
 ### Options
 
 #### options.tscPath
-Type: `String`
+Type: `string`
 Default value: `undefined`
 
 Path to the TypeScript compiler `grunt-tsc` should use, when this is left undefined the
@@ -62,8 +62,14 @@ globally installed TypeScript package will be used. If you'd like to use a night
 TypeScript install `typescript@next` as a dev dependency of your package and then set `tscPath`
 to `path.resolve('node_modules', 'typescript', 'bin', 'tsc')`.
 
+#### options.tscOptions
+Type: `Array<string>`
+Default value: `undefined`
+
+Additional command line options to pass to the TypeScript compiler.
+
 #### options.project
-Type: `String`
+Type: `string`
 Default value: `undefined`
 
 Path to a directory containing a `tsconfig.json`
@@ -100,6 +106,12 @@ grunt.initConfig({
 	      project: './tsconfig/testing'
 	    }
 	  },
+    watchTesting: {
+      options: {
+        project: './tsconfig/testing',
+        tscOptions: ['--watch']
+      }
+    },
     subproject1: {
       options: {
         project: './path-to-subproject1'

@@ -7,6 +7,8 @@
  */
 'use strict';
 var fs = require('fs');
+var child_process = require('child_process');
+var which = require('which');
 function activatePlugin(grunt) {
     grunt.registerMultiTask('tsc', 'Execute TypeScript Compiler', function () {
         var task = this;
@@ -27,24 +29,29 @@ function activatePlugin(grunt) {
         }
         else {
             // if a path to the compiler is not provided use the one from the global typescript package
-            cmd = 'tsc';
-            grunt.log.writeln("Using global tsc");
+            cmd = which.sync('tsc');
+            grunt.log.writeln("Using " + cmd);
         }
         if (options.project) {
             args.push('-p', options.project);
         }
-        var runCompiler = new Promise(function (resolve, reject) {
-            grunt.util.spawn({ cmd: cmd, args: args }, function (error, result, code) {
-                resolve({ error: error, result: result, code: code });
-            });
+        args = args.concat(options.tscOptions);
+        var child = child_process.spawn(cmd, args);
+        child.stdout.on('data', function (data) {
+            grunt.log.write(data);
         });
-        runCompiler.then(function (_a) {
-            var error = _a.error, result = _a.result, code = _a.code;
-            grunt.log.writeln(result.stdout);
-            done();
-        })
-            .catch(function (error) {
-            done(error);
+        child.stderr.on('data', function (data) {
+            grunt.log.error(data);
+        });
+        child.on('close', function (code, signal) {
+            if (code === 0) {
+                grunt.log.writeln(cmd + ' exited normally.');
+                done();
+            }
+            else {
+                grunt.log.writeln(cmd + ' terminated.');
+                done(false);
+            }
         });
     });
 }
