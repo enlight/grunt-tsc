@@ -1,11 +1,12 @@
 # grunt-tsc
 
-> Just executes the TypeScript compiler, optionally passing in a project path.
+> Just executes the TypeScript compiler, passing through any options you wish to provide.
 
 Gah, another TypeScript plugin for Grunt? But, WHY?! Because I wanted to set up `tsconfig.json`
 based builds using the nightly TypeScript builds, and none of the existing TypeScript plugins fit
-the job at the time. However, these days I'd recommend using
-[grunt-ts](https://github.com/TypeStrong/grunt-ts) if you need something more fully featured.
+the job at the time. These days I prefer using this plugin because it's dead simple, and it lets
+me use any TypeScript compiler and compiler options I want. If you need something more fully
+featured I recommend using [grunt-ts](https://github.com/TypeStrong/grunt-ts).
 
 ## Getting Started
 This plugin requires Grunt `~0.4.5`
@@ -66,13 +67,18 @@ to `path.resolve('node_modules', 'typescript', 'bin', 'tsc')`.
 Type: `Array<string>`
 Default value: `undefined`
 
-Additional command line options to pass to the TypeScript compiler.
+Additional command line options to pass to the TypeScript compiler, these aren't checked by
+`grunt-tsc` in any way. The full list of available options is available on the
+[TypeScript Wiki](https://github.com/Microsoft/TypeScript/wiki/Compiler-Options).
 
 #### options.project
 Type: `string`
 Default value: `undefined`
 
-Path to a directory containing a `tsconfig.json`
+Path to a directory containing a `tsconfig.json`. In TypeScript 1.8+ this can be a path to
+any [TypeScript config file](https://github.com/Microsoft/TypeScript/wiki/tsconfig.json)
+(e.g. `path/to/my-es5-tsconfig.json`). Alternatively you could simply specify the
+`--project` or `-p` option in `tscOptions`.
 
 ### Usage Examples
 
@@ -97,15 +103,15 @@ grunt.initConfig({
       tscPath: path.resolve('node_modules', 'typescript', 'bin', 'tsc')
     },
     production: {
-	    options: {
-	      project: './tsconfig/production'
-	    }
-	  },
-	  testing: {
-	    options: {
-	      project: './tsconfig/testing'
-	    }
-	  },
+      options: {
+        project: './tsconfig/production'
+      }
+    },
+    testing: {
+      options: {
+        project: './tsconfig/testing'
+      }
+    },
     watchTesting: {
       options: {
         project: './tsconfig/testing',
@@ -116,12 +122,12 @@ grunt.initConfig({
       options: {
         project: './path-to-subproject1'
       }
-	  },
-	  subproject2: {
-	    options: {
-	      project: './path-to-subproject2'
-	    }
-	  }
+    },
+    subproject2: {
+      options: {
+        project: './path-to-subproject2'
+      }
+    }
   }
 });
 ```
