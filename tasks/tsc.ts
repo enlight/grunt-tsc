@@ -53,7 +53,9 @@ function activatePlugin(grunt: IGrunt) {
       args.push('-p', options.project);
     }
     
-    args = args.concat(options.tscOptions);
+    if (options.tscOptions) {
+      args = args.concat(options.tscOptions);
+    }
     
     const child = child_process.spawn(cmd, args);
     child.stdout.on('data', (data: string) => {
