@@ -35,7 +35,9 @@ function activatePlugin(grunt) {
         if (options.project) {
             args.push('-p', options.project);
         }
-        args = args.concat(options.tscOptions);
+        if (options.tscOptions) {
+            args = args.concat(options.tscOptions);
+        }
         var child = child_process.spawn(cmd, args);
         child.stdout.on('data', function (data) {
             grunt.log.write(data);
